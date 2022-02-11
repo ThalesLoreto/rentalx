@@ -2,6 +2,7 @@ import { parse as csvParse } from 'csv-parse';
 import fs from 'fs';
 import { inject, injectable } from 'tsyringe';
 
+import { AppError } from '../../../../errors/AppError';
 import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
 
 interface IImportCategory {
@@ -20,7 +21,7 @@ class ImportCategoryUseCase {
     file: Express.Multer.File | undefined,
   ): Promise<IImportCategory[]> {
     if (!file) {
-      throw new Error('Error with file type.');
+      throw new AppError('Error with file type.');
     }
 
     return new Promise((resolve, reject) => {
