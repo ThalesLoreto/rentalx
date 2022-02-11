@@ -35,6 +35,7 @@ class AuthenticateUserUseCase {
       throw new Error('Email or password incorrect');
     }
 
+    // TODO: create secret in .env
     const token = sign({}, '6bd9444cb3a2d2b173ef9bad9be05eeb', {
       subject: user.id,
       expiresIn: '1d',
