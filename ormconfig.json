@@ -6,8 +6,8 @@
   "username": "docker",
   "password": "ignite",
   "entities": ["./src/modules/**/infra/typeorm/entities/*.ts"],
-  "migrations": ["./src/shared/infra/typeorm/migration/*.ts"],
+  "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
   "cli": {
-    "migrationsDir": "./src/shared/infra/typeorm"
+    "migrationsDir": "./src/shared/infra/typeorm/migrations"
   }
 }
