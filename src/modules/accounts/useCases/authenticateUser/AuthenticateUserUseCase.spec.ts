@@ -1,6 +1,7 @@
-import { AppError } from '../../../../errors/AppError';
-import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
-import { UsersRepositoryMock } from '../../repositories/mock/UsersRepositoryMock';
+import { AppError } from '@errors/AppError';
+import { ICreateUserDTO } from '@modules/accounts/dtos/ICreateUserDTO';
+import { UsersRepositoryMock } from '@modules/accounts/repositories/mock/UsersRepositoryMock';
+
 import { CreateUserUseCase } from '../createUser/CreateUserUseCase';
 import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
 
