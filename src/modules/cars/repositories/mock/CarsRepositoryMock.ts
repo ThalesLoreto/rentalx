@@ -38,12 +38,26 @@ class CarsRepositoryMock implements ICarsRepository {
 
   async listAllAvailable(filters: IListCarsDTO): Promise<Car[]> {
     const { brand, category_id, name } = filters;
+    const existFilter = !!brand || !!category_id || !!name;
 
-    return this.cars
-      .filter(car => car.available === true)
-      .filter(car => (category_id ? car.category_id === category_id : null))
-      .filter(car => (brand ? car.brand === brand : null))
-      .filter(car => (name ? car.name === name : null));
+    const cars = this.cars
+      .filter(car => (car.available === true ? car : null))
+      .filter(car => {
+        if (!!brand && car.brand === brand) {
+          return car;
+        }
+        if (!!category_id && car.category_id === category_id) {
+          return car;
+        }
+        if (!!name && car.name === name) {
+          return car;
+        }
+
+        if (existFilter) return null;
+        return car;
+      });
+
+    return cars;
   }
 }
 

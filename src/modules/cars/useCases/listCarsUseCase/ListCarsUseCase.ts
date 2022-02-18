@@ -11,8 +11,8 @@ class ListCarsUseCase {
     private carsRepository: ICarsRepository,
   ) {}
 
-  async execute({ brand }: IListCarsDTO): Promise<Car[]> {
-    const cars = await this.carsRepository.listAllAvailable({ brand });
+  async execute(filters: IListCarsDTO): Promise<Car[]> {
+    const cars = await this.carsRepository.listAllAvailable(filters);
     return cars;
   }
 }

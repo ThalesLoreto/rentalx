@@ -58,9 +58,9 @@ describe('List cars', () => {
     console.log(cars);
 
     expect(cars).toEqual(
-      expect.arrayContaining(
+      expect.arrayContaining([
         expect.objectContaining({ brand: 'Brand_Filter' }),
-      ),
+      ]),
     );
   });
 });
