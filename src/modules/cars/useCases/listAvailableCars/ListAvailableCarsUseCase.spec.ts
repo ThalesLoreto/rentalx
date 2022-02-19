@@ -1,17 +1,17 @@
 import { CarsRepositoryMock } from '@modules/cars/repositories/mock/CarsRepositoryMock';
 
 import { CreateCarUseCase } from '../createCar/CreateCarUseCase';
-import { ListCarsUseCase } from './ListCarsUseCase';
+import { ListAvailableCarsUseCase } from './ListAvailableCarsUseCase';
 
 let carsRepositoryMock: CarsRepositoryMock;
-let listCarsUseCase: ListCarsUseCase;
+let listCarsUseCase: ListAvailableCarsUseCase;
 let createCarUseCase: CreateCarUseCase;
 
 describe('List cars', () => {
   beforeEach(() => {
     carsRepositoryMock = new CarsRepositoryMock();
     createCarUseCase = new CreateCarUseCase(carsRepositoryMock);
-    listCarsUseCase = new ListCarsUseCase(carsRepositoryMock);
+    listCarsUseCase = new ListAvailableCarsUseCase(carsRepositoryMock);
   });
 
   it('should be able to list all available cars', async () => {
