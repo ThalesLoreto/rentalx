@@ -15,6 +15,7 @@ class CarsRepositoryMock implements ICarsRepository {
     fine_amount,
     license_plate,
     name,
+    specifications,
   }: ICreateCarDTO): Promise<Car> {
     const car = new Car();
     Object.assign(car, {
@@ -25,6 +26,7 @@ class CarsRepositoryMock implements ICarsRepository {
       category_id,
       fine_amount,
       license_plate,
+      specifications,
     });
 
     this.cars.push(car);
@@ -52,6 +54,10 @@ class CarsRepositoryMock implements ICarsRepository {
     }
 
     return cars;
+  }
+
+  async findById(car_id: string): Promise<Car | undefined> {
+    return this.cars.find(car => car.id === car_id);
   }
 }
 
