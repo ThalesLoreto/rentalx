@@ -18,6 +18,12 @@ class DayjsDateProvider implements IDateProvider {
 
     return dayjs(firstDateUTC).diff(secondDateUTC, 'hours');
   }
+  compareInDays(firstDate: Date, secondDate: Date): number {
+    const firstDateUTC = this.convertToUTC(firstDate);
+    const secondDateUTC = this.convertToUTC(secondDate);
+
+    return dayjs(firstDateUTC).diff(secondDateUTC, 'days');
+  }
 }
 
 export { DayjsDateProvider };
