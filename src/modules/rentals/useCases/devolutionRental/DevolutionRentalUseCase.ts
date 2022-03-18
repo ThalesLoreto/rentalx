@@ -43,8 +43,6 @@ class DevolutionRentalUseCase {
       this.dateProvider.dateNow(),
     );
 
-    console.log(delay);
-
     if (delay > 0) {
       const calculateFine = delay * car.fine_amount;
       total += calculateFine;
