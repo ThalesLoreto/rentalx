@@ -31,6 +31,9 @@ class RentalsRepositoryMock implements IRentalsRepository {
   async findById(id: string): Promise<Rental> {
     return this.rentals.find(rental => rental.id === id) as Rental;
   }
+  async findByUserId(userId: string): Promise<Rental[]> {
+    return this.rentals.filter(rental => rental.user_id === userId);
+  }
 }
 
 export { RentalsRepositoryMock };

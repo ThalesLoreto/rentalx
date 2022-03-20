@@ -3,6 +3,7 @@ interface IDateProvider {
   convertToUTC(date: Date): string;
   dateNow(): Date;
   compareInDays(firstDate: Date, secondDate: Date): number;
+  addDays(days: number): Date;
 }
 
 export { IDateProvider };

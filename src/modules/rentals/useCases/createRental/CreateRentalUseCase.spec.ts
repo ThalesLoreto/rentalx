@@ -28,8 +28,18 @@ describe('Create Rental', () => {
   });
 
   it('should be able to create a new Rental', async () => {
+    const car = await carsRepositoryMock.create({
+      name: 'Car Test',
+      brand: 'Brand Test',
+      daily_rate: 200,
+      description: 'Description Test',
+      fine_amount: 20,
+      license_plate: 'ABS-3434',
+      category_id: 'category-uuid-test',
+    });
+
     const data: ICreateRentalDTO = {
-      car_id: '000-11111',
+      car_id: car.id,
       user_id: '888-99999',
       expected_return_date: returnDate24Hours,
     };
@@ -41,14 +51,34 @@ describe('Create Rental', () => {
   });
 
   it('should not be able to create a new Rental if user already have once', async () => {
+    const car = await carsRepositoryMock.create({
+      name: 'Car Test',
+      brand: 'Brand Test',
+      daily_rate: 200,
+      description: 'Description Test',
+      fine_amount: 20,
+      license_plate: 'ABS-3434',
+      category_id: 'category-uuid-test',
+    });
+
+    const car2 = await carsRepositoryMock.create({
+      name: 'Car Test',
+      brand: 'Brand Test',
+      daily_rate: 200,
+      description: 'Description Test',
+      fine_amount: 20,
+      license_plate: 'ABS-3434',
+      category_id: 'category-uuid-test',
+    });
+
     const data: ICreateRentalDTO = {
-      car_id: 'car-1-uuid',
+      car_id: car.id,
       user_id: 'same-user-id',
       expected_return_date: returnDate24Hours,
     };
 
     const data2: ICreateRentalDTO = {
-      car_id: 'car-2-uuid',
+      car_id: car2.id,
       user_id: 'same-user-id',
       expected_return_date: returnDate24Hours,
     };
@@ -63,14 +93,24 @@ describe('Create Rental', () => {
   });
 
   it('should not be able to create a new Rental if the car is unavailable', async () => {
+    const car = await carsRepositoryMock.create({
+      name: 'Car Test',
+      brand: 'Brand Test',
+      daily_rate: 200,
+      description: 'Description Test',
+      fine_amount: 20,
+      license_plate: 'ABS-3434',
+      category_id: 'category-uuid-test',
+    });
+
     const data: ICreateRentalDTO = {
-      car_id: 'same-car-uuid',
+      car_id: car.id,
       user_id: 'user-1-uuid',
       expected_return_date: returnDate24Hours,
     };
 
     const data2: ICreateRentalDTO = {
-      car_id: 'same-car-uuid',
+      car_id: car.id,
       user_id: 'user-2-uuid',
       expected_return_date: returnDate24Hours,
     };
