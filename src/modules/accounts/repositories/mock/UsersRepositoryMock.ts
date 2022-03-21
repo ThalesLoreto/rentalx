@@ -13,8 +13,8 @@ class UsersRepositoryMock implements IUsersRepository {
     this.users.push(user);
   }
 
-  async findByEmail(email: string): Promise<User | undefined> {
-    return this.users.find(user => user.email === email);
+  async findByEmail(email: string): Promise<User> {
+    return this.users.find(user => user.email === email) as User;
   }
 
   async findById(id: string): Promise<User | undefined> {
