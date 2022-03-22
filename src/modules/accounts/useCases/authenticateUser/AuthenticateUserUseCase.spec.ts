@@ -1,5 +1,7 @@
 import { ICreateUserDTO } from '@modules/accounts/dtos/ICreateUserDTO';
 import { UsersRepositoryMock } from '@modules/accounts/repositories/mock/UsersRepositoryMock';
+import { UsersTokenRepositoryMock } from '@modules/accounts/repositories/mock/UsersTokenRepositoryMock';
+import { DayjsDateProvider } from '@shared/container/providers/DateProvider/implementations/DayjsDateProvider';
 import { AppError } from '@shared/errors/AppError';
 
 import { CreateUserUseCase } from '../createUser/CreateUserUseCase';
@@ -7,13 +9,22 @@ import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
 
 let usersRepositoryMock: UsersRepositoryMock;
 let authenticateUserUseCase: AuthenticateUserUseCase;
+let usersTokenRepositoryMock: UsersTokenRepositoryMock;
+let dateProvider: DayjsDateProvider;
 let createUserUseCase: CreateUserUseCase;
 
 describe('Authenticate User', () => {
   beforeEach(() => {
     usersRepositoryMock = new UsersRepositoryMock();
+    usersTokenRepositoryMock = new UsersTokenRepositoryMock();
+    dateProvider = new DayjsDateProvider();
     createUserUseCase = new CreateUserUseCase(usersRepositoryMock);
-    authenticateUserUseCase = new AuthenticateUserUseCase(usersRepositoryMock);
+
+    authenticateUserUseCase = new AuthenticateUserUseCase(
+      usersRepositoryMock,
+      usersTokenRepositoryMock,
+      dateProvider,
+    );
   });
 
   it('should be able to generate a token', async () => {
